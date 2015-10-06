@@ -9,7 +9,7 @@ import java.util.Random;
  * @author ville
  */
 public class MockEffectenbeurs implements IEffectenbeurs {
-    private List<IFonds> fondsen = new ArrayList<IFonds>();
+    private List<MockFonds> fondsen = new ArrayList<MockFonds>();
 
     public MockEffectenbeurs() {
         //create 10 mocky mockfunds
@@ -31,10 +31,10 @@ public class MockEffectenbeurs implements IEffectenbeurs {
         //change every fund's stock to a random number
         Random random = new Random();
 
-        for (IFonds fonds : fondsen) {
-            ((MockFonds) fonds).setKoers(random.nextInt(100000) / 100);
+        for (MockFonds fonds : fondsen) {
+            fonds.setKoers(random.nextInt(100000) / 100);
         }
 
-        return fondsen;
+        return new ArrayList<IFonds>(fondsen);
     }
 }
