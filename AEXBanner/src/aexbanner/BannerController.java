@@ -24,7 +24,8 @@ public class BannerController implements Initializable {
         this.effectenbeurs = new MockEffectenbeurs();
         
         // Start polling timer: update banner every two seconds
-        pollingTimer = new Timer(new UpdateBannerTask(effectenbeurs), 2000);
+        pollingTimer = new Timer();
+        pollingTimer.schedule(new UpdateBannerTask(effectenbeurs), 2000);
         // TODO
     }
 
@@ -32,7 +33,6 @@ public class BannerController implements Initializable {
     public void stop() {
         pollingTimer.cancel();
         // Stop simulation timer of effectenbeurs
-        // TODO
     }
  
     
