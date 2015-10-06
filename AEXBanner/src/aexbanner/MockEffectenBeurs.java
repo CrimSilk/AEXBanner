@@ -32,7 +32,7 @@ public class MockEffectenbeurs implements IEffectenbeurs {
         Random random = new Random();
 
         for (MockFonds fonds : fondsen) {
-            fonds.setKoers(random.nextInt(100000) / 100);
+            fonds.setKoers((double) random.nextInt(100000) / 100);
         }
 
         return new ArrayList<IFonds>(fondsen);
