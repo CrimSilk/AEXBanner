@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Jasper Rouwhorst
  */
-public class BannerController implements Initializable {
+public class BannerController{
     
     private AEXBanner banner;
     private IEffectenbeurs effectenbeurs;
@@ -27,19 +27,13 @@ public class BannerController implements Initializable {
         
         // Start polling timer: update banner every two seconds
         pollingTimer = new Timer();
-        pollingTimer.schedule(new UpdateBannerTask(banner, effectenbeurs), 2000);
-        // TODO
+        pollingTimer.schedule(new UpdateBannerTask(banner, effectenbeurs), 2000, 2000);
     }
 
     // Stop banner controller
     public void stop() {
         pollingTimer.cancel();
         // Stop simulation timer of effectenbeurs
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
  
     

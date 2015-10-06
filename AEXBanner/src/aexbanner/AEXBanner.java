@@ -61,17 +61,17 @@ public class AEXBanner extends Application {
                 long lag = now - prevUpdate;
                 if (lag >= NANO_TICKS) {
                     // calculate new location of text
-                    textPosition -= (10 * lag);
+                    textPosition -= (5 * (lag/NANO_TICKS));
+                    text.relocate(textPosition,0);
+                    prevUpdate = now;
                 }
-                text.relocate(textPosition,0);
-                prevUpdate = now;
             }
             @Override
             public void start() {
                 prevUpdate = System.nanoTime();
                 textPosition = WIDTH;
+                text.setText("Nothing to display");
                 text.relocate(textPosition, 0);
-                setKoersen("Nothing to display");
                 super.start();
             }
         };
