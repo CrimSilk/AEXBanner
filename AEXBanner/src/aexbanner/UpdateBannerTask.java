@@ -14,10 +14,12 @@ import java.util.List;
  */
 public class UpdateBannerTask extends TimerTask {
 
+    private AEXBanner banner;
     private IEffectenBeurs beurs;
     private List<IFonds> fondslist;
     
-    public UpdateBannerTask(IEffectenBeurs beurs){
+    public UpdateBannerTask(AEXBanner banner, IEffectenBeurs beurs){
+        this.banner = banner;
         this.beurs = beurs;
     }
     
@@ -28,7 +30,7 @@ public class UpdateBannerTask extends TimerTask {
         for(IFonds fonds : fondslist){
             koersen += fonds.getNaam() + " " + fonds.getKoers() + " - ";
         }
-        AEXBanner.setKoersen(koersen);
+        banner.setKoersen(koersen);
     }
     
 }

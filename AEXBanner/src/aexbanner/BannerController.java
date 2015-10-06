@@ -5,6 +5,8 @@
  */
 package aexbanner;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.Timer;
 import javafx.fxml.Initializable;
 
@@ -25,7 +27,7 @@ public class BannerController implements Initializable {
         
         // Start polling timer: update banner every two seconds
         pollingTimer = new Timer();
-        pollingTimer.schedule(new UpdateBannerTask(effectenbeurs), 2000);
+        pollingTimer.schedule(new UpdateBannerTask(banner, effectenbeurs), 2000);
         // TODO
     }
 
@@ -33,6 +35,11 @@ public class BannerController implements Initializable {
     public void stop() {
         pollingTimer.cancel();
         // Stop simulation timer of effectenbeurs
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
  
     
