@@ -17,13 +17,13 @@ import javafx.fxml.Initializable;
 public class BannerController implements Initializable {
     
     private AEXBanner banner;
-    private IEffectenBeurs effectenbeurs;
+    private IEffectenbeurs effectenbeurs;
     private Timer pollingTimer;
 
     public BannerController(AEXBanner banner) {
 
         this.banner = banner;
-        this.effectenbeurs = new MockEffectenBeurs();
+        this.effectenbeurs = new MockEffectenbeurs();
         
         // Start polling timer: update banner every two seconds
         pollingTimer = new Timer();

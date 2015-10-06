@@ -8,10 +8,10 @@ import java.util.Random;
 /**
  * @author ville
  */
-public class MockEffectenBeurs implements IEffectenBeurs {
+public class MockEffectenbeurs implements IEffectenbeurs {
     private List<IFonds> fondsen = new ArrayList<IFonds>();
 
-    public MockEffectenBeurs() {
+    public MockEffectenbeurs() {
         //create 10 mocky mockfunds
         fondsen.addAll(Arrays.asList(
                 new MockFonds("AEX", 0),

@@ -15,10 +15,10 @@ import java.util.List;
 public class UpdateBannerTask extends TimerTask {
 
     private AEXBanner banner;
-    private IEffectenBeurs beurs;
+    private IEffectenbeurs beurs;
     private List<IFonds> fondslist;
     
-    public UpdateBannerTask(AEXBanner banner, IEffectenBeurs beurs){
+    public UpdateBannerTask(AEXBanner banner, IEffectenbeurs beurs){
         this.banner = banner;
         this.beurs = beurs;
     }
