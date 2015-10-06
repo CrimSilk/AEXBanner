@@ -21,4 +21,8 @@ public class MockFonds implements IFonds {
     public double getKoers() {
         return koers;
     }
+
+    public void setKoers(double value) {
+        koers = value;
+    }
 }
