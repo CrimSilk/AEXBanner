@@ -23,7 +23,7 @@ public class BannerController implements Initializable {
     public BannerController(AEXBanner banner) {
 
         this.banner = banner;
-        this.effectenbeurs = new MockEffectenbeurs();
+        this.effectenbeurs = new MockEffectenBeurs();
         
         // Start polling timer: update banner every two seconds
         pollingTimer = new Timer();
