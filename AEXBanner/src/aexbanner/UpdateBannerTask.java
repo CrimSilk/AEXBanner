@@ -5,6 +5,10 @@
  */
 package aexbanner;
 
+import effectenbeursserver.IFonds;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.TimerTask;
 import java.util.List;
 
@@ -17,6 +21,7 @@ public class UpdateBannerTask extends TimerTask {
     private AEXBanner banner;
     private IEffectenbeurs beurs;
     private List<IFonds> fondslist;
+    private static Registry registry;
     
     public UpdateBannerTask(AEXBanner banner, IEffectenbeurs beurs){
         this.banner = banner;
@@ -25,6 +30,16 @@ public class UpdateBannerTask extends TimerTask {
     
     @Override
     public void run() {
+        try {
+            registry = LocateRegistry.getRegistry(ipAddress,portNumber);
+        } catch (RemoteException ex){
+            System.out.println(ex.toString());
+        }
+        try {
+                IPrinter printer = (IPrinter)registry.lookup("Printer");
+                int jobId = printer.printJob("Hi");
+        } catch (RemoteException exc) { … }
+
         fondslist = beurs.getKoersen();
         String koersen = "";
         for(IFonds fonds : fondslist){

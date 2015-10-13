@@ -1,4 +1,4 @@
-package aexbanner;
+package effectenbeursserver;
 
 import java.util.List;
 import java.rmi.*;
@@ -7,5 +7,5 @@ import java.rmi.*;
  * Created by ville on 6/10/2015.
  */
 public interface IEffectenbeurs extends Remote{
-    List<IFonds> getKoersen();
+    List<IFonds> getKoersen() throws RemoteException;
 }
