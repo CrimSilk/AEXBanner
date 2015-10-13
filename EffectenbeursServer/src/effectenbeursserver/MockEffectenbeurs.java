@@ -3,6 +3,7 @@ package effectenbeursserver;
 import effectenbeursinterfaces.IEffectenbeurs;
 import effectenbeursinterfaces.IFonds;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.Random;
 /**
  * @author ville
  */
-public class MockEffectenbeurs extends UnicastRemoteObject implements IEffectenbeurs {
+public class MockEffectenbeurs extends UnicastRemoteObject implements IEffectenbeurs, Serializable {
     private List<MockFonds> fondsen = new ArrayList<MockFonds>();
 
     public MockEffectenbeurs() throws RemoteException {

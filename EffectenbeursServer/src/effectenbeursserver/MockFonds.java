@@ -2,10 +2,12 @@ package effectenbeursserver;
 
 import effectenbeursinterfaces.IFonds;
 
+import java.io.Serializable;
+
 /**
  * Created by ville on 6/10/2015.
  */
-public class MockFonds implements IFonds {
+public class MockFonds implements IFonds, Serializable {
     private String naam;
     private double koers;
 
