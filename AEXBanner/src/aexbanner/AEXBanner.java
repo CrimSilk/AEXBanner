@@ -37,7 +37,7 @@ public class AEXBanner extends Application {
 
         controller = new BannerController(this);
 
-        Font font = new Font("Arial", HEIGHT);
+        Font font = new Font("Consolas", HEIGHT);
         text = new Text();
         text.setFont(font);
         text.setFill(Color.BLACK);
@@ -70,7 +70,6 @@ public class AEXBanner extends Application {
             public void start() {
                 prevUpdate = System.nanoTime();
                 textPosition = WIDTH;
-                text.setText("Nothing to display");
                 text.relocate(textPosition, 0);
                 super.start();
             }

@@ -8,14 +8,14 @@ package aexbanner;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
+
 import javafx.fxml.Initializable;
 
 /**
- *
  * @author Jasper Rouwhorst
  */
-public class BannerController{
-    
+public class BannerController {
+
     private AEXBanner banner;
     private IEffectenbeurs effectenbeurs;
     private Timer pollingTimer;
@@ -24,7 +24,7 @@ public class BannerController{
 
         this.banner = banner;
         this.effectenbeurs = new MockEffectenbeurs();
-        
+
         // Start polling timer: update banner every two seconds
         pollingTimer = new Timer();
         pollingTimer.schedule(new UpdateBannerTask(banner, effectenbeurs), 2000, 2000);
@@ -35,6 +35,6 @@ public class BannerController{
         pollingTimer.cancel();
         // Stop simulation timer of effectenbeurs
     }
- 
-    
+
+
 }

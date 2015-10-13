@@ -28,7 +28,7 @@ public class UpdateBannerTask extends TimerTask {
         fondslist = beurs.getKoersen();
         String koersen = "";
         for(IFonds fonds : fondslist){
-            koersen += fonds.getNaam() + " " + Double.toString(fonds.getKoers()) + " - ";
+            koersen += fonds.getNaam() + " " + String.format("%1$-7s", fonds.getKoers());
         }
         banner.setKoersen(koersen);
     }
