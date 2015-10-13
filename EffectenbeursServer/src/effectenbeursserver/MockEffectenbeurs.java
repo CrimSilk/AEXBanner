@@ -1,8 +1,8 @@
 package effectenbeursserver;
 
-import effectenbeursserver.IEffectenbeurs;
-import effectenbeursserver.IFonds;
-import effectenbeursserver.MockFonds;
+import effectenbeursinterfaces.IEffectenbeurs;
+import effectenbeursinterfaces.IFonds;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;

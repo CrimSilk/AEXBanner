@@ -5,7 +5,9 @@
  */
 package aexbanner;
 
-import effectenbeursserver.IFonds;
+import effectenbeursinterfaces.IEffectenbeurs;
+import effectenbeursinterfaces.IFonds;
+
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;

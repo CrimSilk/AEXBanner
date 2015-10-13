@@ -1,6 +1,6 @@
 package effectenbeursserver;
 
-import effectenbeursserver.IFonds;
+import effectenbeursinterfaces.IFonds;
 
 /**
  * Created by ville on 6/10/2015.

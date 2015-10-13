@@ -1,4 +1,4 @@
-package effectenbeursserver;
+package effectenbeursinterfaces;
 
 /**
  * Created by ville on 6/10/2015.

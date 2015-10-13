@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 
+import effectenbeursinterfaces.IEffectenbeurs;
 import javafx.fxml.Initializable;
 
 /**

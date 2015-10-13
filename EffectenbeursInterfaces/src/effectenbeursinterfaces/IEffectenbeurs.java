@@ -1,4 +1,4 @@
-package effectenbeursserver;
+package effectenbeursinterfaces;
 
 import java.util.List;
 import java.rmi.*;
