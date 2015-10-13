@@ -23,7 +23,6 @@ public class BannerController {
     public BannerController(AEXBanner banner) {
 
         this.banner = banner;
-        this.effectenbeurs = new MockEffectenbeurs();
 
         // Start polling timer: update banner every two seconds
         pollingTimer = new Timer();

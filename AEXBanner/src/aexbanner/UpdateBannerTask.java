@@ -21,7 +21,7 @@ public class UpdateBannerTask extends TimerTask {
     private AEXBanner banner;
     private IEffectenbeurs beurs;
     private List<IFonds> fondslist;
-    private static Registry registry;
+    private Registry registry;
     
     public UpdateBannerTask(AEXBanner banner, IEffectenbeurs beurs){
         this.banner = banner;
@@ -31,15 +31,17 @@ public class UpdateBannerTask extends TimerTask {
     @Override
     public void run() {
         try {
-            registry = LocateRegistry.getRegistry(ipAddress,portNumber);
+            registry = LocateRegistry.getRegistry("localhost",1099);
         } catch (RemoteException ex){
             System.out.println(ex.toString());
         }
+        
         try {
-                IPrinter printer = (IPrinter)registry.lookup("Printer");
-                int jobId = printer.printJob("Hi");
-        } catch (RemoteException exc) { … }
-
+            IEffectenbeurs beurs = (IEffectenbeurs)registry.lookup("EffectenBeurs");
+        } catch (RemoteException ex){
+            System.out.println(ex.toString());
+        }
+        
         fondslist = beurs.getKoersen();
         String koersen = "";
         for(IFonds fonds : fondslist){
@@ -47,5 +49,4 @@ public class UpdateBannerTask extends TimerTask {
         }
         banner.setKoersen(koersen);
     }
-    
 }
