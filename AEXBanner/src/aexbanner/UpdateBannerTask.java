@@ -20,40 +20,34 @@ import java.util.List;
  * @author Jasper Rouwhorst
  */
 public class UpdateBannerTask extends TimerTask {
-
     private AEXBanner banner;
     private IEffectenbeurs beurs;
     private List<IFonds> fondslist;
-    private Registry registry;
     
-    public UpdateBannerTask(AEXBanner banner, IEffectenbeurs beurs){
+    public UpdateBannerTask(AEXBanner banner) throws RemoteException {
         this.banner = banner;
-        this.beurs = beurs;
+
+        Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+
+        try {
+            beurs = (IEffectenbeurs) registry.lookup("EffectenBeurs");
+        } catch (NotBoundException ex) {
+            throw new RemoteException("Could not obtain EffectenBeurs.", ex);
+        }
     }
     
     @Override
     public void run() {
         try {
-            registry = LocateRegistry.getRegistry("localhost", 1099);
+            fondslist = beurs.getKoersen();
+
+            String koersen = "";
+            for(IFonds fonds : fondslist){
+                koersen += fonds.getNaam() + " " + String.format("%1$-7s", fonds.getKoers());
+            }
+            banner.setKoersen(koersen);
         } catch (RemoteException ex) {
             System.out.println(ex.toString());
         }
-
-
-
-        try {
-            IEffectenbeurs beurs = (IEffectenbeurs)registry.lookup("EffectenBeurs");
-            fondslist = beurs.getKoersen();
-        } catch (RemoteException ex){
-            System.out.println(ex.toString());
-        } catch (NotBoundException e) {
-            e.printStackTrace();
-        }
-
-        String koersen = "";
-        for(IFonds fonds : fondslist){
-            koersen += fonds.getNaam() + " " + String.format("%1$-7s", fonds.getKoers());
-        }
-        banner.setKoersen(koersen);
     }
 }

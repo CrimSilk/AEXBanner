@@ -20,23 +20,18 @@ import javafx.stage.Stage;
  * @author Jasper Rouwhorst
  */
 public class AEXBanner extends Application {
-    
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 100;
-    public static final int NANO_TICKS = 20000000; 
-    // FRAME_RATE = 1000000000/NANO_TICKS = 50;
+    public static final int NANO_TICKS = 20000000;
 
     private Text text;
-    private double textLength;
+    private double textWidth;
     private double textPosition;
     private BannerController controller;
     private AnimationTimer animationTimer;
 
     @Override
     public void start(Stage primaryStage) {
-
-        controller = new BannerController(this);
-
         Font font = new Font("Consolas", HEIGHT);
         text = new Text();
         text.setFont(font);
@@ -51,6 +46,7 @@ public class AEXBanner extends Application {
         primaryStage.show();
         primaryStage.toFront();
 
+        controller = new BannerController(this);
 
         // Start animation: text moves from right to left
         animationTimer = new AnimationTimer() {
@@ -61,8 +57,13 @@ public class AEXBanner extends Application {
                 long lag = now - prevUpdate;
                 if (lag >= NANO_TICKS) {
                     // calculate new location of text
-                    textPosition -= (5 * (lag/NANO_TICKS));
+                    textPosition -= (5 * (lag / NANO_TICKS));
+
+                    if (textPosition + textWidth <= 0)
+                        textPosition = WIDTH;
+
                     text.relocate(textPosition,0);
+
                     prevUpdate = now;
                 }
             }
@@ -79,7 +80,7 @@ public class AEXBanner extends Application {
 
     public void setKoersen(String koersen) {
         text.setText(koersen);
-        textLength = text.getLayoutBounds().getWidth();
+        textWidth = text.getLayoutBounds().getWidth();
     }
 
     @Override
@@ -87,6 +88,4 @@ public class AEXBanner extends Application {
         animationTimer.stop();
         controller.stop();
     }
-
-    
 }

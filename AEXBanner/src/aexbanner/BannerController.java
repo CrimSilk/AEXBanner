@@ -6,6 +6,7 @@
 package aexbanner;
 
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 import java.util.Timer;
 
@@ -27,7 +28,11 @@ public class BannerController {
 
         // Start polling timer: update banner every two seconds
         pollingTimer = new Timer();
-        pollingTimer.schedule(new UpdateBannerTask(banner, effectenbeurs), 2000, 2000);
+        try {
+            pollingTimer.schedule(new UpdateBannerTask(banner), 2000, 2000);
+        } catch (RemoteException e) {
+            banner.setKoersen("Geen verbinding met server...");
+        }
     }
 
     // Stop banner controller

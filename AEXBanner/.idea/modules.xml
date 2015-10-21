@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AEXBanner.iml" filepath="$PROJECT_DIR$/AEXBanner.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../EffectenbeursInterfaces/EffectenbeursInterfaces.iml" filepath="$PROJECT_DIR$/../EffectenbeursInterfaces/EffectenbeursInterfaces.iml" />
       <module fileurl="file://$PROJECT_DIR$/../EffectenbeursServer/EffectenbeursServer.iml" filepath="$PROJECT_DIR$/../EffectenbeursServer/EffectenbeursServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../EffectenbeursShared/EffectenbeursShared.iml" filepath="$PROJECT_DIR$/../EffectenbeursShared/EffectenbeursShared.iml" />
     </modules>
   </component>
 </project>

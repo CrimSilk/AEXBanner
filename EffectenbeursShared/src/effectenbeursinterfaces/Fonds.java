@@ -1,4 +1,4 @@
-package effectenbeursserver;
+package effectenbeursinterfaces;
 
 import effectenbeursinterfaces.IFonds;
 
@@ -7,11 +7,11 @@ import java.io.Serializable;
 /**
  * Created by ville on 6/10/2015.
  */
-public class MockFonds implements IFonds, Serializable {
+public class Fonds implements IFonds, Serializable {
     private String naam;
     private double koers;
 
-    public MockFonds(String naam, double koers) {
+    public Fonds(String naam, double koers) {
         this.naam = naam;
         this.koers = koers;
     }
