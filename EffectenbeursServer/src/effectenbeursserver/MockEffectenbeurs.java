@@ -3,6 +3,9 @@ package effectenbeursserver;
 import effectenbeursinterfaces.Fonds;
 import effectenbeursinterfaces.IEffectenbeurs;
 import effectenbeursinterfaces.IFonds;
+import fontys.observer.BasicPublisher;
+import fontys.observer.RemotePropertyListener;
+import fontys.observer.RemotePublisher;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -16,8 +19,11 @@ import java.util.Random;
  */
 public class MockEffectenbeurs extends UnicastRemoteObject implements IEffectenbeurs {
     private List<Fonds> fondsen = new ArrayList<Fonds>();
+    private BasicPublisher publisher;
 
     public MockEffectenbeurs() throws RemoteException {
+        publisher = new BasicPublisher(new String[] { "koersen" });
+
         //create 10 mocky mockfunds
         fondsen.addAll(Arrays.asList(
                 new Fonds("AEX", 0),
@@ -41,6 +47,18 @@ public class MockEffectenbeurs extends UnicastRemoteObject implements IEffectenb
             fonds.setKoers((double) random.nextInt(100000) / 100);
         }
 
-        return new ArrayList<IFonds>(fondsen);
+        List<IFonds> returnKoersen = new ArrayList<IFonds>(fondsen);
+
+        publisher.inform(this, "koersen", null, returnKoersen);
+
+        return returnKoersen;
+    }
+
+    public void addListener(RemotePropertyListener remotePropertyListener, String s) throws RemoteException {
+        publisher.addListener(remotePropertyListener, s);
+    }
+
+    public void removeListener(RemotePropertyListener remotePropertyListener, String s) throws RemoteException {
+        publisher.removeListener(remotePropertyListener, s);
     }
 }

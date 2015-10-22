@@ -5,41 +5,56 @@
  */
 package aexbanner;
 
-import java.net.URL;
-import java.rmi.RemoteException;
-import java.util.ResourceBundle;
-import java.util.Timer;
-
+import effectenbeursinterfaces.Fonds;
 import effectenbeursinterfaces.IEffectenbeurs;
-import javafx.fxml.Initializable;
+import effectenbeursinterfaces.IFonds;
+import fontys.observer.RemotePropertyListener;
+
+import java.beans.PropertyChangeEvent;
+import java.rmi.AccessException;
+import java.rmi.NotBoundException;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
+import java.util.Timer;
 
 /**
  * @author Jasper Rouwhorst
  */
-public class BannerController {
-
+public class BannerController extends UnicastRemoteObject implements RemotePropertyListener {
     private AEXBanner banner;
-    private IEffectenbeurs effectenbeurs;
-    private Timer pollingTimer;
 
-    public BannerController(AEXBanner banner) {
-
+    public BannerController(AEXBanner banner) throws RemoteException {
         this.banner = banner;
 
-        // Start polling timer: update banner every two seconds
-        pollingTimer = new Timer();
         try {
-            pollingTimer.schedule(new UpdateBannerTask(banner), 2000, 2000);
-        } catch (RemoteException e) {
-            banner.setKoersen("Geen verbinding met server...");
+            //subscribe to updates of remote publisher
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            IEffectenbeurs beurs = (IEffectenbeurs) registry.lookup("beurs");
+            beurs.addListener(this, "koersen");
+        } catch (NotBoundException ex) {
+            banner.setKoersen("Geen beurs geregistreerd...");
         }
     }
 
-    // Stop banner controller
-    public void stop() {
-        pollingTimer.cancel();
-        // Stop simulation timer of effectenbeurs
+    @Override
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent) throws RemoteException {
+        switch (propertyChangeEvent.getPropertyName()) {
+            case "koersen":
+                updateKoersen((List<IFonds>) propertyChangeEvent.getNewValue());
+                break;
+        }
     }
 
+    private void updateKoersen(List<IFonds> koersen) {
+        String koersString = "";
+        for(IFonds fonds : koersen){
+            koersString += fonds.getNaam() + " " + String.format("%1$-7s", fonds.getKoers());
+        }
 
+        banner.setKoersen(koersString);
+    }
 }
