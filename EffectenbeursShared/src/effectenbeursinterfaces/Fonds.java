@@ -1,7 +1,5 @@
 package effectenbeursinterfaces;
 
-import effectenbeursinterfaces.IFonds;
-
 import java.io.Serializable;
 
 /**

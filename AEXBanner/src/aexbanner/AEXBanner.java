@@ -18,7 +18,6 @@ import java.rmi.RemoteException;
 
 
 /**
- *
  * @author Jasper Rouwhorst
  */
 public class AEXBanner extends Application {
@@ -69,11 +68,12 @@ public class AEXBanner extends Application {
                     if (textPosition + textWidth <= 0)
                         textPosition = WIDTH;
 
-                    text.relocate(textPosition,0);
+                    text.relocate(textPosition, 0);
 
                     prevUpdate = now;
                 }
             }
+
             @Override
             public void start() {
                 prevUpdate = System.nanoTime();

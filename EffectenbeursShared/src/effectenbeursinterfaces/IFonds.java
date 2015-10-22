@@ -5,5 +5,6 @@ package effectenbeursinterfaces;
  */
 public interface IFonds {
     String getNaam();
+
     double getKoers();
 }

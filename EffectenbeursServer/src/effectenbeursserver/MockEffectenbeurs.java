@@ -5,7 +5,6 @@ import effectenbeursinterfaces.IEffectenbeurs;
 import effectenbeursinterfaces.IFonds;
 import fontys.observer.BasicPublisher;
 import fontys.observer.RemotePropertyListener;
-import fontys.observer.RemotePublisher;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -22,7 +21,7 @@ public class MockEffectenbeurs extends UnicastRemoteObject implements IEffectenb
     private BasicPublisher publisher;
 
     public MockEffectenbeurs() throws RemoteException {
-        publisher = new BasicPublisher(new String[] { "koersen" });
+        publisher = new BasicPublisher(new String[]{"koersen"});
 
         //create 10 mocky mockfunds
         fondsen.addAll(Arrays.asList(

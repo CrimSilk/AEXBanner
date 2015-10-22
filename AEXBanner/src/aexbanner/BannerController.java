@@ -5,21 +5,17 @@
  */
 package aexbanner;
 
-import effectenbeursinterfaces.Fonds;
 import effectenbeursinterfaces.IEffectenbeurs;
 import effectenbeursinterfaces.IFonds;
 import fontys.observer.RemotePropertyListener;
 
 import java.beans.PropertyChangeEvent;
-import java.rmi.AccessException;
 import java.rmi.NotBoundException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
-import java.util.Timer;
 
 /**
  * @author Jasper Rouwhorst
@@ -51,7 +47,7 @@ public class BannerController extends UnicastRemoteObject implements RemotePrope
 
     private void updateKoersen(List<IFonds> koersen) {
         String koersString = "";
-        for(IFonds fonds : koersen){
+        for (IFonds fonds : koersen) {
             koersString += fonds.getNaam() + " " + String.format("%1$-7s", fonds.getKoers());
         }
 
